@@ -8,10 +8,6 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import com.springjdbc.model.Student;
 import com.springjdbc.util.StudentDao;
 
-/**
- * Contains main method
- *
- */
 public class App {
 	
 	static ApplicationContext context = new ClassPathXmlApplicationContext("com/springjdbc/util/config.xml"); 
