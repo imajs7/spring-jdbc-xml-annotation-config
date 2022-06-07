@@ -3,6 +3,7 @@ package com.springjdbc.util;
 import javax.sql.DataSource;
 
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
@@ -10,6 +11,7 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import com.springjdbc.service.StudentDaoImplementation;
 
 @Configuration
+@ComponentScan(basePackages = "com.springjdbc.service") // required only when autowired
 public class SpringConfig {
 	
 	@Bean
@@ -29,10 +31,13 @@ public class SpringConfig {
 		return jdbcTemplate;
 	}
 	
+	// can be removed if autowired
+	/*
 	@Bean(name = "studentDao")
 	public StudentDao getStudentDao() {
 		StudentDaoImplementation studentDao = new StudentDaoImplementation();
 		studentDao.setJdbcTemplate( getTemplate() );
 		return studentDao;
 	}
+	*/
 }

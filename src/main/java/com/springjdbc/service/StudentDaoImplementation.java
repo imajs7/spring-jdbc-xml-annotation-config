@@ -2,14 +2,18 @@ package com.springjdbc.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Component;
 
 import com.springjdbc.model.Student;
 import com.springjdbc.util.StudentDao;
 
+@Component("studentDao") // required only when autowired
 public class StudentDaoImplementation implements StudentDao{
 	
+	@Autowired // required only when autowired
 	private JdbcTemplate jdbcTemplate;
 
 	public int insert(Student student) {
