@@ -4,14 +4,20 @@ import java.util.List;
 import java.util.Scanner;
 
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.springjdbc.model.Student;
+import com.springjdbc.util.SpringConfig;
 import com.springjdbc.util.StudentDao;
 
 public class App {
 	
-	static ApplicationContext context = new ClassPathXmlApplicationContext("com/springjdbc/util/config.xml"); 
+	// used for xml config file
+	//static ApplicationContext context = new ClassPathXmlApplicationContext("com/springjdbc/util/config.xml"); 
+	
+	// used for Annotation based config file
+	static ApplicationContext context = new AnnotationConfigApplicationContext(SpringConfig.class);
 	
     public static void main( String[] args ) {
     	
