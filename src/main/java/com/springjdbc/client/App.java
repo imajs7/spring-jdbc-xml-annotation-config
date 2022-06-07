@@ -1,6 +1,7 @@
 package com.springjdbc.client;
 
 import java.util.List;
+import java.util.Scanner;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -14,39 +15,76 @@ public class App {
 	
     public static void main( String[] args ) {
     	
-    	int choice = 5;
+    	Scanner input = new Scanner(System.in);
     	
-    	switch (choice) {
-			case 1:
-				//insert new record
-		        Student student1 = newStudent(5, "Vikash", "Vijag");
-		        int insertRecord = insertRecord(student1);
-		        System.out.println("Number of record added: " + insertRecord);
-				break;
-				
-			case 2:
-				// edit old record
-		        int editRecord = editRecord(2, "Anupama Singhdeo", "Saltlake");
-		        System.out.println("Number of record update: " + editRecord);
-				break;
-				
-			case 3:
-				// delete old record
-		    	int deleteRecord = deleteRecord(4);
-		    	System.out.println("Number of records deleted: " + deleteRecord);
-				break;
-				
-			case 4:
-				// select records from table
-		    	System.out.println( showStudentRecord(2).toString() );
-				break;
-	
-			default:
-				// select all records from table
-		    	showStudentRecord();
-				break;
-		}	
+    	System.out.println("Enter option (1 - Insert | 2 - Edit | 3 - Delete | 4 - Show | 5 - Show All | 6 - Exit)");
+    	int choice = input.nextInt();
     	
+    	while(choice != 6) {
+    		
+    		switch (choice) {
+    		
+				case 1:
+					//insert new record
+					System.out.print("Enter new Id: ");
+					int id = input.nextInt();
+					System.out.print("Enter new First Name: ");
+					String name = input.next();
+					System.out.print("Enter new Last Name: ");
+					name = name + " " + input.next();
+					System.out.print("Enter new City: ");
+					String city = input.next();
+			        Student student1 = newStudent(id, name, city);
+			        int insertRecord = insertRecord(student1);
+			        System.out.println("Number of record added: " + insertRecord);
+					break;
+					
+				case 2:
+					// edit old record
+					System.out.print("Enter Id to edit: ");
+					int id1 = input.nextInt();
+					System.out.print("Enter new First Name: ");
+					String name1 = input.next();
+					System.out.print("Enter new Last Name: ");
+					name1 = name1 + " " + input.next();
+					System.out.print("Enter new City: ");
+					String city1 = input.next();
+			        int editRecord = editRecord(id1, name1, city1);
+			        System.out.println("Number of record update: " + editRecord);
+					break;
+					
+				case 3:
+					// delete old record
+					System.out.println("Enter the id to delete: ");
+					int id2 = input.nextInt();
+			    	int deleteRecord = deleteRecord(id2);
+			    	System.out.println("Number of records deleted: " + deleteRecord);
+					break;
+					
+				case 4:
+					// select records from table
+					System.out.println("Enter the id to show: ");
+					int id3 = input.nextInt();
+			    	System.out.println( showStudentRecord(id3).toString() );
+					break;
+					
+				case 5:
+					// show all records
+					showStudentRecord();
+					break;
+		
+				case 6:
+					// exit
+					break;
+			}	
+    		
+    		System.out.println("Enter option (1 - Insert | 2 - Edit | 3 - Delete | 4 - Show | 5 - Show All | 6 - Exit)");
+	    	choice = input.nextInt();
+    		
+    	}
+    	
+    	
+    	input.close();
     }
     
     public static int insertRecord(Student student) {
